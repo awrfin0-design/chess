@@ -1,0 +1,9 @@
+The chess piece artwork in pieces.svg is copied from Wikimedia Commons
+https://commons.wikimedia.org/wiki/Category:SVG_chess_pieces/Standard
+
+Authors: Colin M.L. Burnett (https://en.wikipedia.org/wiki/User:Cburnett)
+         and Rfc1394 (https://en.wikipedia.org/wiki/User:Rfc1394)
+Sprite assembled by Stefan Haack for cm-chessboard (https://github.com/shaack/cm-chessboard).
+
+License: Creative Commons Attribution-ShareAlike 3.0 Unported (CC BY-SA 3.0)
+https://creativecommons.org/licenses/by-sa/3.0/
