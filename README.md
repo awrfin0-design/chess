@@ -56,9 +56,24 @@ docker run -p 3000:3000 -v rookery-data:/data rookery
 
 ### Deploying
 
-The app is a single Node process: deploy it to any host that runs Node or Docker (Fly.io, Render, Railway, a VPS…).
-Put it behind HTTPS and set `TRUST_PROXY=1`, and keep `DB_FILE` on a persistent volume.
-The proxy must allow WebSocket upgrades on `/socket.io/`.
+Rookery is a **Node.js server**, not a static website. The server runs the games, the clocks, the live
+connections and the database. Static hosts (**Cloudflare Pages, GitHub Pages, Netlify, Vercel static**) can only
+serve files, so on them the page shows just the header and a "server isn't running" message.
+Use a host that runs Node or Docker.
+
+**Render (free, easiest)**
+1. Sign in at https://render.com with your GitHub account.
+2. Click **New → Blueprint**, pick this repository and click **Apply**. The included `render.yaml` sets everything up.
+   (Or **New → Web Service**: build command `npm ci`, start command `npm start`, environment variable `TRUST_PROXY=1`.)
+3. After a few minutes you get a URL like `https://rookery-xxxx.onrender.com`. Share it and play.
+
+Free-plan caveats on Render: the server sleeps after 15 minutes without visitors, and the first visit afterwards takes
+about a minute to wake it. The free plan also has no persistent disk, so accounts, ratings and game history are wiped
+whenever the service restarts or redeploys. To keep data, upgrade the service and attach a disk mounted at `/data`,
+then set `DB_FILE=/data/chess.db`.
+
+**Other hosts**: Railway, Fly.io or any VPS work the same way (Docker or `npm ci && npm start`).
+Serve it over HTTPS, set `TRUST_PROXY=1`, keep `DB_FILE` on persistent storage, and make sure WebSockets are allowed.
 
 ## How it's built
 

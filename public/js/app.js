@@ -190,5 +190,6 @@ function highlightNav() {
   });
 }
 
+document.documentElement.dataset.booted = '1';
 await refreshMe();
 route();

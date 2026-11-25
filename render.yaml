@@ -1,0 +1,14 @@
+# One-click deploy on Render (https://render.com): New → Blueprint → pick this repo.
+services:
+  - type: web
+    name: rookery
+    runtime: node
+    plan: free
+    buildCommand: npm ci
+    startCommand: npm start
+    healthCheckPath: /api/me
+    envVars:
+      - key: NODE_VERSION
+        value: "22"
+      - key: TRUST_PROXY
+        value: "1"
